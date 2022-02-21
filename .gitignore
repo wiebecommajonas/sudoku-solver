@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Node
+/node_modules
+/package-lock.json
+
+/.parcel-cache
+
+# Elm
+/elm-stuff
+
+# Build
+/dist
+/build
