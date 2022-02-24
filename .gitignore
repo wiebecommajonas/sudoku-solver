@@ -3,9 +3,6 @@
 
 # Node
 /node_modules
-/package-lock.json
-
-/.parcel-cache
 
 # Elm
 /elm-stuff
