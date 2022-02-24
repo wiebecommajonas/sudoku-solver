@@ -31,7 +31,7 @@ boxIndex index =
 area : (Int -> Int) -> Int -> Sudoku -> List ( Int, Value )
 area indexer index sudoku =
     List.indexedMap (\i value -> ( i, value )) sudoku
-        |> List.filter (\( i, value ) -> indexer i == index)
+        |> List.filter (\( i, _ ) -> indexer i == index)
 
 
 col : Int -> Sudoku -> List ( Int, Value )
@@ -81,10 +81,10 @@ solveHelper counter sudoku log =
                                 List.Extra.setAt i val sudoku
 
                             newLog =
-                                newSudoku :: log
+                                log ++ [ newSudoku ]
                         in
                         case solveHelper 0 newSudoku newLog of
-                            ( True, llog ) as result ->
+                            ( True, _ ) as result ->
                                 result
 
                             ( False, llog ) ->
@@ -93,7 +93,7 @@ solveHelper counter sudoku log =
                                         List.Extra.setAt i None sudoku
 
                                     resetLog =
-                                        resetSudoku :: llog
+                                        llog ++ [ resetSudoku ]
                                 in
                                 solveHelper (counter + 1) resetSudoku resetLog
 
@@ -111,7 +111,7 @@ solve : Sudoku -> Maybe (List Sudoku)
 solve sudoku =
     case solveHelper 0 sudoku [] of
         ( True, log ) ->
-            Just <| List.reverse log
+            Just log
 
         _ ->
             Nothing
