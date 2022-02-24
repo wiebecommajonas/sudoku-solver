@@ -1,7 +1,7 @@
 {
   "scripts": {
     "serve": "vite",
-    "build": "vite build"
+    "build": "vite build --outDir build --emptyOutDir"
   },
   "devDependencies": {
     "elm": "^0.19.1-5",
